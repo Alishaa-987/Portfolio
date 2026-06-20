@@ -1,31 +1,35 @@
 import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
-import { SectionLabel } from './About';
+import { SectionHeading } from './About';
 
 const achievements = [
   {
-    emoji: '🎓',
-    title: 'Section Leader — Code in Place',
+    title: 'Stanford Code in Place — Section Leader',
     org: 'Stanford University',
     year: '2026',
-    desc: 'One of ~2,000 Section Leaders selected globally from thousands of applicants to teach Python fundamentals through Stanford\'s worldwide free CS initiative.',
-    accent: 'purple',
+    detail: 'Selected from thousands of global applicants for a competitive teaching role within one of the world\'s largest free CS education initiatives. Approximately 2,000 leaders selected.',
+    tags: ['Teaching', 'Python', 'Leadership', 'Global Selection'],
   },
   {
-    emoji: '🏆',
-    title: 'CS50 Puzzle Day — 2× Winner',
+    title: 'CS50 Puzzle Day — 9/9 Solver (Two Consecutive Years)',
     org: 'Harvard University',
     year: '2024 & 2025',
-    desc: 'Solved all 9/9 puzzles for two consecutive years, demonstrating strong logic, CS fundamentals, and systematic problem-solving under time constraints.',
-    accent: 'cyan',
+    detail: 'Solved all 9 out of 9 puzzles at Harvard\'s CS50 Puzzle Day competition for two consecutive years, demonstrating strong logical reasoning and core CS fundamentals.',
+    tags: ['Problem Solving', 'CS Fundamentals', 'Logic'],
   },
   {
-    emoji: '⚡',
     title: 'Meta Hacker Cup — Round 1 Qualifier',
     org: 'Meta',
     year: '2025',
-    desc: 'Qualified for Round 1 of Meta\'s global competitive programming contest, showcasing algorithmic thinking and problem-solving under pressure.',
-    accent: 'purple',
+    detail: 'Qualified for Round 1 of Meta\'s global competitive programming contest, competing against thousands of programmers worldwide.',
+    tags: ['Competitive Programming', 'Algorithms', 'C++ / Python'],
+  },
+  {
+    title: 'Dev Weekends MERN Stack Fellow — Bronze Certificate',
+    org: 'Dev Weekends',
+    year: '2025',
+    detail: 'Earned a Bronze Certificate upon completion of the structured MERN Stack and DSA fellowship programme, recognising consistent performance and successful project delivery.',
+    tags: ['MERN Stack', 'DSA', 'Fellowship'],
   },
 ];
 
@@ -35,46 +39,30 @@ export default function Achievements() {
   return (
     <section id="achievements" className="py-28 px-6">
       <div className="max-w-6xl mx-auto">
-        <SectionLabel number="05" label="Achievements" />
-        <h2 className="text-3xl md:text-5xl font-black text-white mb-14">
-          Recognition & <span className="text-gradient">awards</span>
-        </h2>
+        <div className="divider mb-28" />
+        <SectionHeading label="Recognition" title="Achievements & awards" />
 
-        <div ref={ref} className="grid md:grid-cols-3 gap-5">
+        <div ref={ref} className="grid sm:grid-cols-2 gap-4 max-w-4xl">
           {achievements.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 32 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: i * 0.12 }}
-              className="group glass glass-hover rounded-2xl p-7 relative overflow-hidden"
+              transition={{ duration: 0.45, delay: i * 0.08 }}
+              className="card card-hover p-6"
             >
-              {/* Accent corner glow */}
-              <div
-                className="absolute -top-8 -right-8 w-24 h-24 rounded-full blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"
-                style={{ background: item.accent === 'purple' ? '#a855f7' : '#06b6d4' }}
-              />
-
-              <div className="relative z-10">
-                <div className="text-3xl mb-5">{item.emoji}</div>
-
-                <div className="mb-4">
-                  <span
-                    className="text-[10px] font-mono uppercase tracking-widest"
-                    style={{
-                      background: item.accent === 'purple'
-                        ? 'linear-gradient(135deg, #a855f7, #c084fc)'
-                        : 'linear-gradient(135deg, #06b6d4, #67e8f9)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                    }}
-                  >
-                    {item.org} · {item.year}
-                  </span>
+              <div className="flex items-start justify-between gap-3 mb-3">
+                <div>
+                  <p className="section-label mb-1">{item.org}</p>
+                  <h3 className="text-sm font-bold text-[#e2e2e2] leading-snug">{item.title}</h3>
                 </div>
-
-                <h3 className="text-base font-bold text-white mb-3 leading-snug">{item.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
+                <span className="tag shrink-0 self-start">{item.year}</span>
+              </div>
+              <p className="text-sm text-[#777] leading-relaxed mb-4">{item.detail}</p>
+              <div className="flex flex-wrap gap-1.5 pt-4 border-t border-[#1f1f1f]">
+                {item.tags.map((t) => (
+                  <span key={t} className="tag">{t}</span>
+                ))}
               </div>
             </motion.div>
           ))}

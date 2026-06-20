@@ -1,12 +1,14 @@
 export interface Project {
   id: string;
   name: string;
-  description: string;
+  problem: string;
+  solution: string;
+  outcome: string;
   github: string;
   live: string | null;
   language: string;
   tags: string[];
-  category: 'fullstack' | 'ai' | 'mobile' | 'other';
+  category: 'fullstack' | 'ai' | 'systems';
   featured: boolean;
 }
 
@@ -14,32 +16,22 @@ export const projects: Project[] = [
   {
     id: 'school-mgmt',
     name: 'School Management System',
-    description:
-      'Modern LMS-style web app with multi-role authentication (admin, teacher, student, parent), dynamic dashboards, CRUD operations, and analytics. Built production-ready with Docker.',
+    problem: 'Schools managing student data, attendance, and role-based dashboards across multiple stakeholders (admin, teacher, student, parent) needed a unified digital platform.',
+    solution: 'Built a production-grade LMS web application with multi-role authentication, real-time dashboards, grade management, attendance tracking, and data visualisation using Recharts.',
+    outcome: 'Functional full-stack application with Dockerised deployment, live on Vercel. Demonstrates end-to-end engineering across auth, CRUD, data modelling, and UI.',
     github: 'https://github.com/Alishaa-987/School_Managment_System',
     live: 'https://learning-managment-system-sigma.vercel.app/',
     language: 'TypeScript',
-    tags: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Prisma', 'Clerk', 'Docker', 'Recharts'],
-    category: 'fullstack',
-    featured: true,
-  },
-  {
-    id: 'ecommerce',
-    name: 'E-Commerce Project',
-    description:
-      'Full-featured e-commerce platform with product listings, shopping cart, user authentication, and order management. Deployed on Vercel.',
-    github: 'https://github.com/Alishaa-987/E_Commerce_Project',
-    live: 'https://e-commerce-project-one-rho.vercel.app',
-    language: 'JavaScript',
-    tags: ['Next.js', 'JavaScript', 'Tailwind CSS', 'Clerk', 'PostgreSQL'],
+    tags: ['Next.js 15', 'TypeScript', 'PostgreSQL', 'Prisma', 'Clerk', 'Tailwind CSS', 'Docker', 'Recharts'],
     category: 'fullstack',
     featured: true,
   },
   {
     id: 'real-estate',
-    name: 'Real Estate Web App',
-    description:
-      'Full-stack MERN real estate platform with property search, advanced filters, JWT authentication, and property management for buyers and sellers.',
+    name: 'Real Estate Platform',
+    problem: 'Property buyers and sellers lacked a single platform for browsing listings, managing properties, and communicating securely.',
+    solution: 'Developed a full-stack MERN application with property search, advanced filters, JWT-secured authentication, listing CRUD, and state management via Redux.',
+    outcome: 'Deployed and accessible on Vercel. Shows mastery of the complete MERN stack, REST API design, and stateful frontend architecture.',
     github: 'https://github.com/Alishaa-987/Real_State_project',
     live: 'https://real-state-project-sand.vercel.app',
     language: 'JavaScript',
@@ -48,62 +40,93 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    id: 'ecommerce',
+    name: 'E-Commerce Store',
+    problem: 'Small retailers needed an affordable, performant storefront with product management, cart logic, and user accounts without vendor lock-in.',
+    solution: 'Engineered a full-featured Next.js e-commerce platform covering product listings, shopping cart, checkout flow, user authentication via Clerk, and a PostgreSQL backend with Prisma ORM.',
+    outcome: 'Live on Vercel. Demonstrates SSR/SSG strategies, data modelling for e-commerce, and real-world auth integration.',
+    github: 'https://github.com/Alishaa-987/E_Commerce_Project',
+    live: 'https://e-commerce-project-one-rho.vercel.app',
+    language: 'JavaScript',
+    tags: ['Next.js', 'Clerk', 'PostgreSQL', 'Prisma', 'Tailwind CSS', 'JavaScript'],
+    category: 'fullstack',
+    featured: true,
+  },
+  {
+    id: 'artistic-image-studio',
+    name: 'Artistic Image Studio',
+    problem: 'Applying artistic filters to photographs requires specialist software and technical knowledge inaccessible to most users.',
+    solution: 'Designed and built a MATLAB App Designer application implementing five Non-Photorealistic Rendering (NPR) filters — Pencil Sketch, Ink Outline, Oil Painting, Charcoal Sketch, and Pop Art — using core Digital Image Processing algorithms.',
+    outcome: 'Functional interactive GUI for real-time artistic transformation. Algorithms implemented from scratch: Canny edge detection, bilateral filtering, colour quantisation, Gaussian blur, and morphological operations.',
+    github: 'https://github.com/Alishaa-987/Artistic_Image_Studio',
+    live: null,
+    language: 'MATLAB',
+    tags: ['MATLAB', 'App Designer', 'Image Processing Toolbox', 'Edge Detection', 'Bilateral Filtering', 'Colour Quantisation'],
+    category: 'systems',
+    featured: true,
+  },
+  {
     id: 'chatting',
     name: 'Real-Time Chat App',
-    description:
-      'Real-time messaging application with live chat functionality, user authentication, and a clean modern UI.',
+    problem: 'Needed a working demonstration of real-time bidirectional communication with user sessions.',
+    solution: 'Built a real-time messaging application with live chat, user authentication, and a clean UI using TypeScript and Supabase Realtime.',
+    outcome: 'Deployed live on Vercel. Demonstrates WebSocket-level concepts, auth flows, and TypeScript discipline.',
     github: 'https://github.com/Alishaa-987/chatting',
     live: 'https://chatting-silk-nine.vercel.app',
     language: 'TypeScript',
-    tags: ['TypeScript', 'React', 'Tailwind CSS', 'Supabase'],
+    tags: ['TypeScript', 'React', 'Supabase', 'Tailwind CSS'],
     category: 'fullstack',
     featured: false,
   },
   {
     id: 'hospital-mgmt',
     name: 'Hospital Management System',
-    description:
-      'Comprehensive hospital management website with patient records, appointment scheduling, and admin dashboard built with modern TypeScript stack.',
+    problem: 'Healthcare facilities need a centralised system for patient records and appointment scheduling.',
+    solution: 'Built a hospital management website covering patient records, appointment scheduling, and an admin dashboard using Next.js and TypeScript.',
+    outcome: 'Functional multi-role management system demonstrating healthcare domain modelling and TypeScript-first development.',
     github: 'https://github.com/Alishaa-987/Hospital_Managment_System_Webiste',
     live: null,
     language: 'TypeScript',
-    tags: ['TypeScript', 'Next.js', 'Tailwind CSS', 'PostgreSQL', 'Prisma'],
+    tags: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Tailwind CSS'],
     category: 'fullstack',
-    featured: false,
-  },
-  {
-    id: 'webmind-hackathon',
-    name: 'IntelliSense AI — Hackathon',
-    description:
-      'AI analytics platform measuring brand visibility across generative AI models. Built and presented at the WebMind Innovation Hackathon.',
-    github: 'https://github.com/Alishaa-987/WebMind-Innovation-Hackathon-Track-1',
-    live: null,
-    language: 'JavaScript',
-    tags: ['JavaScript', 'Next.js', 'FastAPI', 'Python', 'OpenAI'],
-    category: 'ai',
     featured: false,
   },
   {
     id: 'chat-pdf',
     name: 'Chat with PDF',
-    description:
-      'RAG-powered chatbot that lets users interact with the content of PDF and Word documents using the Groq API for fast LLM inference.',
+    problem: 'Professionals dealing with long documents (PDFs, Word files) spend excessive time manually extracting information.',
+    solution: 'Built a RAG-powered chatbot using LangChain and Groq API that parses uploaded documents and answers questions through natural language with source citations.',
+    outcome: 'Functional AI assistant for document Q&A. Demonstrates LLM integration, prompt engineering, and retrieval-augmented generation.',
     github: 'https://github.com/Alishaa-987/Chat_with_pdf',
     live: null,
     language: 'Python',
-    tags: ['Python', 'Groq API', 'LangChain', 'RAG', 'Streamlit'],
+    tags: ['Python', 'LangChain', 'Groq API', 'RAG', 'Streamlit'],
     category: 'ai',
     featured: false,
   },
   {
     id: 'voice-chatbot',
     name: 'Voice-to-Voice Chatbot',
-    description:
-      'Real-time voice chatbot using OpenAI Whisper for speech-to-text, Groq API for LLM responses, and gTTS for text-to-speech output.',
+    problem: 'Text-based chatbots exclude users who prefer voice interaction or have accessibility needs.',
+    solution: 'Built a real-time voice pipeline using OpenAI Whisper for speech-to-text, Groq API for LLM responses, and gTTS for text-to-speech output.',
+    outcome: 'End-to-end speech interaction loop. Demonstrates AI pipeline design, async audio processing, and multi-model orchestration.',
     github: 'https://github.com/Alishaa-987/Voice-to_voice_chatbot',
     live: null,
     language: 'Python',
     tags: ['Python', 'Whisper', 'Groq API', 'gTTS', 'Speech Recognition'],
+    category: 'ai',
+    featured: false,
+  },
+  {
+    id: 'webmind-hackathon',
+    name: 'IntelliSense AI — Hackathon',
+    problem: 'Brands lack visibility into how generative AI models represent them in responses — a critical blind spot as AI replaces traditional search.',
+    solution: 'Built an AI analytics dashboard measuring brand visibility across generative AI models in 48 hours at the WebMind Innovation Hackathon.',
+    outcome: 'Delivered a functional working prototype under competition conditions. Demonstrates rapid full-stack development and AI product thinking.',
+    github: 'https://github.com/Alishaa-987/WebMind-Innovation-Hackathon-Track-1',
+    live: null,
+    language: 'JavaScript',
+    tags: ['Next.js', 'FastAPI', 'Python', 'OpenAI', 'JavaScript'],
     category: 'ai',
     featured: false,
   },

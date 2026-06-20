@@ -1,91 +1,105 @@
 import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
-import { SectionLabel } from './About';
+import { SectionHeading } from './About';
 
-const skillGroups = [
+const skills = [
   {
-    label: 'Frontend',
-    color: 'purple',
-    items: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS', 'React Hook Form', 'Zod', 'Redux'],
+    category: 'Frontend',
+    items: [
+      { name: 'React.js', level: 'Advanced', evidence: 'E-Commerce, Real Estate, Chat App' },
+      { name: 'Next.js', level: 'Advanced', evidence: 'School Mgmt, Hospital Mgmt, E-Commerce' },
+      { name: 'TypeScript', level: 'Advanced', evidence: 'School Mgmt, Hospital Mgmt, Chat App' },
+      { name: 'Tailwind CSS', level: 'Advanced', evidence: 'All web projects' },
+      { name: 'Redux', level: 'Intermediate', evidence: 'Real Estate (global state)' },
+    ],
   },
   {
-    label: 'Backend',
-    color: 'cyan',
-    items: ['Node.js', 'Express.js', 'FastAPI', 'REST APIs', 'WebSockets'],
+    category: 'Backend',
+    items: [
+      { name: 'Node.js', level: 'Advanced', evidence: 'Real Estate, Mern-crud-app' },
+      { name: 'Express.js', level: 'Advanced', evidence: 'Real Estate REST API' },
+      { name: 'REST API Design', level: 'Advanced', evidence: 'Multiple projects' },
+      { name: 'FastAPI', level: 'Intermediate', evidence: 'IntelliSense AI Hackathon' },
+      { name: 'WebSockets', level: 'Intermediate', evidence: 'Chat App (Supabase Realtime)' },
+    ],
   },
   {
-    label: 'Databases & ORM',
-    color: 'purple',
-    items: ['MongoDB', 'PostgreSQL', 'Prisma ORM', 'Supabase'],
+    category: 'Databases & ORM',
+    items: [
+      { name: 'MongoDB', level: 'Advanced', evidence: 'Real Estate (MERN)' },
+      { name: 'PostgreSQL', level: 'Advanced', evidence: 'School Mgmt, E-Commerce' },
+      { name: 'Prisma ORM', level: 'Advanced', evidence: 'School Mgmt, Hospital Mgmt' },
+      { name: 'Supabase', level: 'Intermediate', evidence: 'Chat App, contact forms' },
+    ],
   },
   {
-    label: 'Auth & Security',
-    color: 'cyan',
-    items: ['JWT Authentication', 'Clerk', 'NextAuth.js'],
+    category: 'AI & Python',
+    items: [
+      { name: 'Python', level: 'Advanced', evidence: 'LeetCode, iCodeGuru training' },
+      { name: 'LangChain', level: 'Intermediate', evidence: 'Chat with PDF (RAG)' },
+      { name: 'Groq API', level: 'Intermediate', evidence: 'Chat with PDF, Voice Chatbot' },
+      { name: 'OpenAI Whisper', level: 'Intermediate', evidence: 'Voice-to-Voice Chatbot' },
+      { name: 'MATLAB', level: 'Intermediate', evidence: 'Artistic Image Studio (DIP)' },
+    ],
   },
   {
-    label: 'AI & Python',
-    color: 'purple',
-    items: ['Python', 'FastAPI', 'LangChain', 'Groq API', 'OpenAI', 'Whisper', 'Streamlit'],
+    category: 'Auth & Security',
+    items: [
+      { name: 'JWT', level: 'Advanced', evidence: 'Real Estate (token auth)' },
+      { name: 'Clerk', level: 'Advanced', evidence: 'School Mgmt, E-Commerce' },
+      { name: 'NextAuth.js', level: 'Intermediate', evidence: 'Next.js projects' },
+    ],
   },
   {
-    label: 'Tools & DevOps',
-    color: 'cyan',
-    items: ['Git', 'GitHub', 'Docker', 'VS Code', 'Vercel', 'Linux'],
+    category: 'Tools & DevOps',
+    items: [
+      { name: 'Git & GitHub', level: 'Advanced', evidence: '29+ public repos' },
+      { name: 'Docker', level: 'Intermediate', evidence: 'School Mgmt (containerised)' },
+      { name: 'Vercel', level: 'Advanced', evidence: '3+ live deployments' },
+      { name: 'Linux CLI', level: 'Intermediate', evidence: 'Daily development workflow' },
+    ],
   },
 ];
+
+const levelColor: Record<string, string> = {
+  Advanced: 'text-[#ccc]',
+  Intermediate: 'text-[#777]',
+};
 
 export default function Skills() {
   const { ref, inView } = useInView();
 
   return (
-    <section id="skills" className="py-28 px-6 relative">
-      {/* subtle background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/10 to-transparent" />
-      </div>
+    <section id="skills" className="py-28 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="divider mb-28" />
+        <SectionHeading label="Skills" title="What I work with" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <SectionLabel number="02" label="Skills" />
-        <h2 className="text-3xl md:text-5xl font-black text-white mb-14">
-          What I work <span className="text-gradient">with</span>
-        </h2>
-
-        <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {skillGroups.map((group, gi) => (
+        <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {skills.map((group, gi) => (
             <motion.div
-              key={group.label}
-              initial={{ opacity: 0, y: 28 }}
+              key={group.category}
+              initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: gi * 0.07 }}
-              className="glass glass-hover rounded-2xl p-6"
+              transition={{ duration: 0.45, delay: gi * 0.06 }}
+              className="card p-6"
             >
-              {/* Header */}
-              <div className="flex items-center gap-2.5 mb-5">
-                <span
-                  className="w-2 h-2 rounded-full shrink-0"
-                  style={{
-                    background: group.color === 'purple'
-                      ? 'linear-gradient(135deg, #a855f7, #c084fc)'
-                      : 'linear-gradient(135deg, #06b6d4, #67e8f9)',
-                  }}
-                />
-                <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">{group.label}</span>
-              </div>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2">
-                {group.items.map((skill) => (
-                  <span
-                    key={skill}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-medium border transition-colors duration-200 cursor-default ${
-                      group.color === 'purple'
-                        ? 'border-purple-500/15 text-purple-200 bg-purple-500/6 hover:border-purple-500/35 hover:bg-purple-500/12'
-                        : 'border-cyan-500/15 text-cyan-200 bg-cyan-500/6 hover:border-cyan-500/35 hover:bg-cyan-500/12'
-                    }`}
-                  >
-                    {skill}
-                  </span>
+              <p className="section-label mb-5">{group.category}</p>
+              <div className="space-y-3">
+                {group.items.map((item) => (
+                  <div key={item.name} className="flex items-start justify-between gap-3 group">
+                    <div>
+                      <p className="text-sm text-[#ccc] font-medium group-hover:text-[#e8e8e8] transition-colors">
+                        {item.name}
+                      </p>
+                      <p className="text-[11px] text-[#444] font-mono mt-0.5 leading-snug">
+                        {item.evidence}
+                      </p>
+                    </div>
+                    <span className={`text-[10px] font-mono shrink-0 mt-0.5 ${levelColor[item.level]}`}>
+                      {item.level}
+                    </span>
+                  </div>
                 ))}
               </div>
             </motion.div>
