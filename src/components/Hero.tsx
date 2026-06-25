@@ -1,33 +1,31 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Download, MapPin } from 'lucide-react';
+import { Github, Linkedin, Mail, Download, MapPin, BookOpen } from 'lucide-react';
+import type { View } from '../App';
 
-export default function Hero() {
+interface HeroProps {
+  onNav?: (v: View) => void;
+}
+
+export default function Hero({ onNav }: HeroProps) {
   return (
     <section className="min-h-screen flex items-center px-6 pt-14">
       <div className="max-w-5xl mx-auto w-full py-16">
 
-        {/* Editorial header row: Name + Photo */}
         <div className="flex items-end justify-between gap-6 mb-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
           >
-            {/* Status pill */}
             <div className="flex items-center gap-2 mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#6B7065]" />
               <span className="section-label">Open to opportunities</span>
             </div>
-
-            {/* Giant editorial name */}
             <h1 className="text-5xl sm:text-6xl xl:text-[80px] font-black text-[#D0D0D0] leading-[0.95] tracking-tight">
-              Alisha
-              <br />
-              Fatima
+              Alisha<br />Fatima
             </h1>
           </motion.div>
 
-          {/* Photo — grayscale to match monochrome theme */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -44,7 +42,6 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Full-width rule */}
         <motion.div
           initial={{ scaleX: 0, originX: 0 }}
           animate={{ scaleX: 1 }}
@@ -52,7 +49,6 @@ export default function Hero() {
           className="h-px bg-[#4A4A4A] mb-6"
         />
 
-        {/* Meta row */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -71,31 +67,19 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        {/* Bio */}
-        <motion.div
+        <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.42 }}
-          className="text-sm text-[#6B7065]/90 leading-[1.85] max-w-2xl mb-8 space-y-3"
+          className="text-sm text-[#6B7065]/90 leading-[1.85] max-w-xl mb-8"
         >
-          <p>
-            A Computer Science student with hands-on experience in software development and a passion for building
-            innovative, user-focused digital products that solve real-world problems. Experienced in developing
-            scalable applications using modern technologies, with growing expertise in Generative AI and emerging
-            software solutions.
-          </p>
-          <p>
-            Skilled at combining technical problem-solving, clean design, and product thinking to create practical,
-            high-impact applications. Actively engaged in open-source collaboration and continuous learning, with a
-            proven ability to adapt quickly, work effectively in team environments, and contribute to meaningful
-            projects, driven by a commitment to leveraging technology to deliver value and improve user experiences.
-          </p>
-        </motion.div>
+          CS student at UAF building full-stack web apps, contributing to open source, 
+          and teaching Python to learners worldwide. Selected from 110,000 applicants 
+          as a Stanford Code in Place Section Leader for 2026.
+        </motion.p>
 
-        {/* Second rule */}
         <div className="h-px bg-[#4A4A4A]/40 mb-8" />
 
-        {/* CTA + Social row */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -104,6 +88,11 @@ export default function Hero() {
         >
           <a href="#projects" className="btn-primary">View Projects</a>
           <a href="/Alisha_Fatima_Resume.pdf" download className="btn-secondary"><Download size={12} /> Resume</a>
+          {onNav && (
+            <button onClick={() => onNav('articles')} className="btn-secondary">
+              <BookOpen size={12} /> Articles
+            </button>
+          )}
 
           <div className="flex gap-1.5 ml-2">
             {[
@@ -116,11 +105,8 @@ export default function Hero() {
               </a>
             ))}
           </div>
-
-          <span className="text-[10px] text-[#4A4A4A] font-mono hidden lg:block">alishafatima6768@gmail.com</span>
         </motion.div>
 
-        {/* Mobile photo */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

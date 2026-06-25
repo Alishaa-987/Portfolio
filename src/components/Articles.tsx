@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion';
 import { useInView } from '../hooks/useInView';
 import { SectionHeading } from './About';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, ArrowRight } from 'lucide-react';
 
-const articles = [
+export const articles = [
   {
     id: 'docker-to-production',
-    title: 'Docker to Production: A Beginner\'s Guide to Cloud Deployment',
+    title: "Docker to Production: A Beginner's Guide to Cloud Deployment",
     excerpt:
-      'Writing software locally is straightforward. Shipping it reliably to the world is a different challenge entirely. This piece walks through containerisation with Docker and the full path from a working local app to a live cloud deployment.',
+      'Shipping software reliably to the world is a different challenge from running it locally. This piece walks through containerisation with Docker and the full path from a working local app to a live cloud deployment.',
     date: 'May 23, 2025',
     tag: 'DevOps',
     url: 'https://medium.com/@af4060957/docker-to-production-a-beginners-guide-to-cloud-deployment-d02692e648ba',
@@ -16,9 +16,9 @@ const articles = [
   },
   {
     id: 'cicd-cloud',
-    title: 'A Beginner\'s Guide to CI/CD and Cloud Deployment',
+    title: "A Beginner's Guide to CI/CD and Cloud Deployment",
     excerpt:
-      'Building an app locally is just step one. Storing data safely in the cloud, automating tests, and deploying every change without manual effort. That\'s what CI/CD pipelines are for. A practical introduction for developers new to the workflow.',
+      'Building an app locally is just step one. Storing data safely in the cloud, automating tests, and deploying every change without manual effort. That is what CI/CD pipelines are for.',
     date: 'May 23, 2025',
     tag: 'Cloud',
     url: 'https://medium.com/@af4060957/a-beginners-guide-to-ci-cd-and-cloud-deployment-067d90603210',
@@ -28,7 +28,7 @@ const articles = [
     id: 'web-request-cloud',
     title: 'The Journey of a Web Request in the Cloud',
     excerpt:
-      'You tap a button on your food app at 9 PM. Your screen updates within seconds, the restaurant gets your order, and payment goes through, all without you thinking twice. This article traces every hop that makes that happen.',
+      'You tap a button on your food app at 9 PM. Your screen updates in seconds, the restaurant gets your order, payment goes through. This article traces every hop that makes that happen.',
     date: 'May 19, 2025',
     tag: 'Cloud',
     url: 'https://medium.com/@af4060957/the-journey-of-a-web-request-in-the-cloud-cf3cf21abf04',
@@ -36,8 +36,13 @@ const articles = [
   },
 ];
 
-export default function Articles() {
+interface ArticlesProps {
+  onViewAll: () => void;
+}
+
+export default function Articles({ onViewAll }: ArticlesProps) {
   const { ref, inView } = useInView();
+  const preview = articles.slice(0, 2);
 
   return (
     <section id="articles" className="py-24 px-6">
@@ -52,12 +57,12 @@ export default function Articles() {
             rel="noopener noreferrer"
             className="btn-secondary self-start mb-10 shrink-0"
           >
-            <ExternalLink size={12} /> All articles
+            <ExternalLink size={12} /> Medium profile
           </a>
         </div>
 
-        <div ref={ref} className="space-y-3">
-          {articles.map((article, i) => (
+        <div ref={ref} className="space-y-3 mb-8">
+          {preview.map((article, i) => (
             <motion.a
               key={article.id}
               href={article.url}
@@ -82,14 +87,25 @@ export default function Articles() {
                     {article.excerpt}
                   </p>
                 </div>
-                <ExternalLink
-                  size={13}
-                  className="shrink-0 text-[#4A4A4A] group-hover:text-[#6B7065] transition-colors mt-0.5"
-                />
+                <ExternalLink size={13} className="shrink-0 text-[#4A4A4A] group-hover:text-[#6B7065] transition-colors mt-0.5" />
               </div>
             </motion.a>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.35, delay: 0.2 }}
+          className="flex justify-center"
+        >
+          <button
+            onClick={onViewAll}
+            className="btn-secondary flex items-center gap-2 px-6"
+          >
+            View all {articles.length} articles <ArrowRight size={13} />
+          </button>
+        </motion.div>
       </div>
     </section>
   );
