@@ -4,7 +4,7 @@ import { SectionHeading } from './About';
 
 const experiences = [
   {
-    role: 'Section Leader, Code in Place',
+    role: 'Section Leader — Code in Place',
     org: 'Stanford University',
     period: '2026',
     points: [
@@ -16,7 +16,7 @@ const experiences = [
   {
     role: 'Trainer & Moderator',
     org: 'iCodeGuru',
-    period: '2025 to Present',
+    period: '2025 – Present',
     points: [
       'Delivers DSA and Python training sessions for students preparing for tech interviews.',
       'Moderates community Slack workspace and provides technical mentorship.',

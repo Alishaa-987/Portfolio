@@ -22,7 +22,7 @@ export default function Education() {
                 <p className="text-xs text-[#6B7065] mt-1">University of Agriculture, Faisalabad</p>
               </div>
               <div className="flex flex-col gap-1.5 items-start sm:items-end shrink-0">
-                <span className="tag">2023 to 2027</span>
+                <span className="tag">2023 – 2027</span>
                 <span className="text-[10px] text-[#4A4A4A] font-mono">4th Year</span>
               </div>
             </div>

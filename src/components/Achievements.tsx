@@ -3,10 +3,10 @@ import { useInView } from '../hooks/useInView';
 import { SectionHeading } from './About';
 
 const achievements = [
-  { title: 'Stanford Code in Place: Section Leader', org: 'Stanford University', year: '2026', detail: 'Selected from thousands of global applicants (~2,000 leaders) to teach Python.' },
-  { title: 'CS50 Puzzle Day: 9/9 Solver (2×)', org: 'Harvard University', year: '2024 & 2025', detail: 'Solved all 9 puzzles for two consecutive years.' },
-  { title: 'Meta Hacker Cup: Round 1 Qualifier', org: 'Meta', year: '2025', detail: 'Qualified for Round 1 of global competitive programming contest.' },
-  { title: 'Dev Weekends Fellow: Bronze Certificate', org: 'Dev Weekends', year: '2025', detail: 'Earned Bronze Certificate for MERN stack and DSA fellowship.' },
+  { title: 'Stanford Code in Place — Section Leader', org: 'Stanford University', year: '2026', detail: 'Selected from thousands of global applicants (~2,000 leaders) to teach Python.' },
+  { title: 'CS50 Puzzle Day — 9/9 Solver (2×)', org: 'Harvard University', year: '2024 & 2025', detail: 'Solved all 9 puzzles for two consecutive years.' },
+  { title: 'Meta Hacker Cup — Round 1 Qualifier', org: 'Meta', year: '2025', detail: 'Qualified for Round 1 of global competitive programming contest.' },
+  { title: 'Dev Weekends Fellow — Bronze Certificate', org: 'Dev Weekends', year: '2025', detail: 'Earned Bronze Certificate for MERN stack and DSA fellowship.' },
 ];
 
 export default function Achievements() {

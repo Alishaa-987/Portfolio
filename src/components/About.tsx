@@ -24,7 +24,7 @@ export default function About() {
     <section id="about" className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <div className="divider mb-24" />
-        <SectionHeading label="About" title="Beyond the code" />
+        <SectionHeading label="About" title="Who I am" />
 
         {/* Stats row */}
         <motion.div
@@ -49,16 +49,13 @@ export default function About() {
             className="space-y-4 text-sm text-[#6B7065] leading-[1.9]"
           >
             <p>
-              Out of roughly 110,000 applicants worldwide, Alisha was selected as one of{' '}
-              <span className="text-[#D0D0D0]">~2,000 Section Leaders for Stanford Code in Place 2026</span>{' '}
-              a role that involves teaching Python to hundreds of learners globally and shaping how beginners experience programming for the first time.
+              <span className="text-[#D0D0D0] font-semibold">Alisha Fatima</span> is a CS student at UAF (Class of 2027) with hands-on experience in software development and a passion for building innovative, user-focused digital products that solve real-world problems.
             </p>
             <p>
-              A <span className="text-[#D0D0D0]">two-time Harvard CS50 Puzzle Day 9/9 solver</span> and{' '}
-              <span className="text-[#D0D0D0]">Meta Hacker Cup Round 1 qualifier</span>, she competes consistently at the intersection of algorithms and speed. Her open-source contributions through GSSoC '25 and volunteer teaching at iCodeGuru reflect a genuine commitment to giving back to the community that shaped her.
+              Experienced in developing scalable applications using modern technologies — from full-stack web platforms to cross-platform mobile apps — with growing expertise in Generative AI and emerging software solutions.
             </p>
             <p>
-              She participates in international hackathons on Lablab.ai and the Dev Weekends Fellowship, shipping working prototypes under tight deadlines. Her writing on cloud infrastructure and deployment reaches fellow developers on Medium, where she breaks down complex DevOps concepts for beginners.
+              Selected as one of <span className="text-[#D0D0D0]">~2,000 Section Leaders globally</span> for Stanford Code in Place 2026. Two-time <span className="text-[#D0D0D0]">Harvard CS50 Puzzle Day 9/9 solver</span>. Meta Hacker Cup Round 1 qualifier. Active GSSoC '25 open-source contributor.
             </p>
 
             <div className="pt-4 border-t border-[#4A4A4A]/35">
