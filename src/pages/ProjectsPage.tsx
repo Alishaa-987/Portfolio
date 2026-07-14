@@ -20,13 +20,13 @@ function ProjectCard({ project }: { project: Project }) {
   const hiddenCount = project.tags.length - MAX_TAGS;
 
   return (
-    <div className="card flex flex-col h-full">
+    <div className="card flex flex-col h-full bg-bg-card border-border-color">
       <div className="p-5 flex flex-col h-full">
         <div className="flex items-start justify-between gap-3 mb-3">
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-bold text-[#D0D0D0] leading-snug">{project.name}</h3>
+            <h3 className="text-sm font-bold text-text-primary leading-snug">{project.name}</h3>
             {project.featured && (
-              <span className="text-[9px] font-mono text-[#4A4A4A] uppercase tracking-wider">Featured</span>
+              <span className="text-[9px] font-mono text-text-muted uppercase tracking-wider">Featured</span>
             )}
           </div>
           <div className="flex gap-1.5 shrink-0">
@@ -41,7 +41,7 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
         </div>
 
-        <p className="text-xs text-[#6B7065] leading-relaxed line-clamp-3 mb-3">{project.problem}</p>
+        <p className="text-xs text-text-secondary leading-relaxed line-clamp-3 mb-3">{project.problem}</p>
 
         <AnimatePresence initial={false}>
           {expanded && (
@@ -54,11 +54,11 @@ function ProjectCard({ project }: { project: Project }) {
             >
               <div className="mb-3">
                 <p className="section-label mb-1">Solution</p>
-                <p className="text-xs text-[#6B7065] leading-relaxed line-clamp-3">{project.solution}</p>
+                <p className="text-xs text-text-secondary leading-relaxed line-clamp-3">{project.solution}</p>
               </div>
               <div className="mb-3">
                 <p className="section-label mb-1">Outcome</p>
-                <p className="text-xs text-[#6B7065] leading-relaxed line-clamp-3">{project.outcome}</p>
+                <p className="text-xs text-text-secondary leading-relaxed line-clamp-3">{project.outcome}</p>
               </div>
             </motion.div>
           )}
@@ -71,11 +71,11 @@ function ProjectCard({ project }: { project: Project }) {
           {hiddenCount > 0 && <span className="tag">+{hiddenCount}</span>}
         </div>
 
-        <div className="flex items-center justify-between border-t border-[#4A4A4A]/35 pt-3">
-          <span className="text-[10px] text-[#4A4A4A] font-mono">{project.language}</span>
+        <div className="flex items-center justify-between border-t border-border-color/35 pt-3">
+          <span className="text-[10px] text-text-muted font-mono">{project.language}</span>
           <button
             onClick={() => setExpanded((v) => !v)}
-            className="flex items-center gap-1 text-[10px] text-[#4A4A4A] hover:text-[#6B7065] font-mono transition-colors"
+            className="flex items-center gap-1 text-[10px] text-text-muted hover:text-text-secondary font-mono transition-colors"
           >
             {expanded ? <><ChevronUp size={11} /> Less</> : <><ChevronDown size={11} /> More</>}
           </button>
@@ -93,13 +93,13 @@ export default function ProjectsPage() {
     : projects.filter((p) => p.category === active);
 
   return (
-    <div className="min-h-screen bg-[#111111] text-[#e2e2e2]">
-      <div className="max-w-5xl mx-auto px-6 py-16">
+    <div className="min-h-screen bg-bg-primary text-text-primary transition-colors duration-300">
+      <div className="max-w-5xl mx-auto px-6 py-24">
 
         {/* Back */}
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-xs text-[#6B7065] hover:text-[#D0D0D0] font-mono transition-colors mb-12"
+          className="inline-flex items-center gap-2 text-xs text-text-secondary hover:text-text-primary font-mono transition-colors mb-12"
         >
           <ArrowLeft size={12} /> Back to portfolio
         </Link>
@@ -107,8 +107,8 @@ export default function ProjectsPage() {
         {/* Header */}
         <div className="mb-10">
           <p className="section-label mb-2">Projects</p>
-          <h1 className="text-3xl sm:text-4xl font-black text-[#D0D0D0] leading-tight">All projects</h1>
-          <p className="text-sm text-[#6B7065] mt-3 leading-relaxed max-w-xl">
+          <h1 className="text-3xl sm:text-4xl font-black text-text-primary leading-tight">All projects</h1>
+          <p className="text-sm text-text-secondary mt-3 leading-relaxed max-w-xl">
             A full catalogue of my work — from production-deployed web platforms to mobile apps and AI experiments.
           </p>
         </div>
@@ -121,8 +121,8 @@ export default function ProjectsPage() {
               onClick={() => setActive(cat.id as typeof active)}
               className={`px-2.5 py-1.5 rounded text-[10px] font-mono transition-all border ${
                 active === cat.id
-                  ? 'bg-[#D0D0D0] text-[#1C1C1C] border-[#D0D0D0]'
-                  : 'border-[#4A4A4A] text-[#6B7065] hover:border-[#6B7065] bg-transparent'
+                  ? 'bg-text-primary text-bg-primary border-text-primary font-semibold'
+                  : 'border-border-color text-text-secondary hover:border-text-primary bg-transparent'
               }`}
             >
               {cat.label}
@@ -152,7 +152,7 @@ export default function ProjectsPage() {
               </motion.div>
             ))}
             {filtered.length === 0 && (
-              <p className="text-xs text-[#4A4A4A] font-mono col-span-full py-6">
+              <p className="text-xs text-text-muted font-mono col-span-full py-6">
                 No projects in this category yet.
               </p>
             )}
@@ -160,8 +160,8 @@ export default function ProjectsPage() {
         </AnimatePresence>
 
         {/* GitHub CTA */}
-        <div className="mt-16 pt-8 border-t border-[#4A4A4A]/30">
-          <p className="text-xs text-[#6B7065] mb-3">More experiments and work in progress on GitHub.</p>
+        <div className="mt-16 pt-8 border-t border-border-color/30">
+          <p className="text-xs text-text-secondary mb-3">More experiments and work in progress on GitHub.</p>
           <a
             href="https://github.com/Alishaa-987"
             target="_blank"

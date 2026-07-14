@@ -40,26 +40,26 @@ export default function Articles() {
               initial={{ opacity: 0, y: 14 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.35, delay: i * 0.07 }}
-              className="card flex flex-col h-full p-5 group hover:border-[#6B7065]/50 transition-colors"
+              className="card flex flex-col h-full p-5 group hover:border-border-color/50 transition-colors"
             >
               <div className="flex items-center justify-between mb-3">
                 <span className="tag">{article.tag}</span>
-                <span className="text-[10px] text-[#4A4A4A] font-mono">{article.readTime}</span>
+                <span className="text-[10px] text-text-muted font-mono">{article.readTime}</span>
               </div>
 
-              <h3 className="text-sm font-bold text-[#D0D0D0] leading-snug mb-2 group-hover:text-white transition-colors line-clamp-2">
+              <h3 className="text-sm font-bold text-text-primary leading-snug mb-2 group-hover:text-text-primary transition-colors line-clamp-2">
                 {article.title}
               </h3>
 
-              <p className="text-xs text-[#6B7065] leading-relaxed line-clamp-3 mb-4">
+              <p className="text-xs text-text-secondary leading-relaxed line-clamp-3 mb-4">
                 {article.summary}
               </p>
 
               <div className="flex-1" />
 
-              <div className="flex items-center justify-between border-t border-[#4A4A4A]/35 pt-3">
-                <span className="text-[10px] text-[#4A4A4A] font-mono">{article.date}</span>
-                <ExternalLink size={11} className="text-[#4A4A4A] group-hover:text-[#6B7065] transition-colors" />
+              <div className="flex items-center justify-between border-t border-border-color/35 pt-3">
+                <span className="text-[10px] text-text-muted font-mono">{article.date}</span>
+                <ExternalLink size={11} className="text-text-muted group-hover:text-text-secondary transition-colors" />
               </div>
             </motion.a>
           ))}
