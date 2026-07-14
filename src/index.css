@@ -2,33 +2,117 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Light Theme — warm parchment/cream with deep ink text and sage accent */
+  --bg-primary: #F5F3EF;
+  --bg-secondary: #EDEAE4;
+  --bg-card: #FAF8F5;
+  --border-color: #D6CFC4;
+  --text-primary: #1A1714;
+  --text-secondary: #4A4540;
+  --text-muted: #7A746D;
+  --accent: #5C6B52;
+  --selection-bg: rgba(92, 107, 82, 0.15);
+
+  --tag-bg: #EDE9E2;
+  --tag-border: #CFC9BF;
+  --tag-text: #4E5C45;
+
+  --btn-primary-bg: #1A1714;
+  --btn-primary-text: #F5F3EF;
+  --btn-primary-hover: #2E2A27;
+
+  --btn-secondary-bg: transparent;
+  --btn-secondary-border: #C4BDB4;
+  --btn-secondary-text: #4A4540;
+  --btn-secondary-hover-border: #5C6B52;
+  --btn-secondary-hover-text: #1A1714;
+
+  --scrollbar-track: #F5F3EF;
+  --scrollbar-thumb: #C4BDB4;
+  --scrollbar-thumb-hover: #A8A09A;
+
+  --input-bg: #FAF8F5;
+  --input-border: #C4BDB4;
+
+  /* Legacy color maps for Tailwind CSS */
+  --charcoal: #EDEAE4;
+  --dark-gray: #FAF8F5;
+  --medium-gray: #D6CFC4;
+  --sage: #5C6B52;
+  --light-gray: #1A1714;
+}
+
+html.dark {
+  /* Dark Theme variables - OLED black base with high contrast text and sage accent */
+  --bg-primary: #0A0A0A;
+  --bg-secondary: #121212;
+  --bg-card: #161616;
+  --border-color: #262626;
+  --text-primary: #F5F5F7;
+  --text-secondary: #B4B8B0; /* Extremely legible lighter sage-gray for dark mode */
+  --text-muted: #8E9388; /* Highly readable medium sage-gray for dark mode */
+  --accent: #A3A89F; /* Bright sage accent */
+  --selection-bg: rgba(163, 168, 159, 0.2);
+  
+  --tag-bg: #121212;
+  --tag-border: #262626;
+  --tag-text: #A3A89F;
+  
+  --btn-primary-bg: #F5F5F7;
+  --btn-primary-text: #0A0A0A;
+  --btn-primary-hover: #FFFFFF;
+  
+  --btn-secondary-bg: transparent;
+  --btn-secondary-border: #262626;
+  --btn-secondary-text: #B4B8B0;
+  --btn-secondary-hover-border: #A3A89F;
+  --btn-secondary-hover-text: #F5F5F7;
+  
+  --scrollbar-track: #0A0A0A;
+  --scrollbar-thumb: #262626;
+  --scrollbar-thumb-hover: #404040;
+  
+  --input-bg: #121212;
+  --input-border: #262626;
+
+  /* Legacy color maps for Tailwind CSS */
+  --charcoal: #121212;
+  --dark-gray: #161616;
+  --medium-gray: #262626;
+  --sage: #B4B8B0;
+  --light-gray: #F5F5F7;
+}
+
 @layer base {
   html { scroll-behavior: smooth; }
 
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    background-color: #1C1C1C;
-    color: #D0D0D0;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   ::selection {
-    background: rgba(107, 112, 101, 0.25);
-    color: #fff;
+    background: var(--selection-bg);
+    color: var(--text-primary);
   }
 
   ::-webkit-scrollbar { width: 5px; }
-  ::-webkit-scrollbar-track { background: #1C1C1C; }
-  ::-webkit-scrollbar-thumb { background: #4A4A4A; border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: #6B7065; }
+  ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+  ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
 }
 
 @layer utilities {
   .card {
-    background: #2A2A2A;
-    border: 1px solid #4A4A4A;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 
   .section-label {
@@ -36,24 +120,27 @@
     font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #6B7065;
+    color: var(--accent);
+    transition: color 0.3s ease;
   }
 
   .tag {
     display: inline-flex;
     padding: 3px 9px;
     border-radius: 4px;
-    background: #1C1C1C;
-    border: 1px solid #4A4A4A;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
     font-size: 11px;
-    color: #6B7065;
+    color: var(--tag-text);
     font-family: 'JetBrains Mono', ui-mono, monospace;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
 
   .divider {
     height: 1px;
-    background: #4A4A4A;
+    background: var(--border-color);
     opacity: 0.35;
+    transition: background-color 0.3s ease;
   }
 
   .btn-primary {
@@ -62,13 +149,13 @@
     gap: 6px;
     padding: 9px 20px;
     border-radius: 6px;
-    background: #D0D0D0;
-    color: #1C1C1C;
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
     font-size: 13px;
     font-weight: 600;
-    transition: background 0.15s ease;
+    transition: background 0.15s ease, color 0.15s ease;
   }
-  .btn-primary:hover { background: #fff; }
+  .btn-primary:hover { background: var(--btn-primary-hover); }
 
   .btn-secondary {
     display: inline-flex;
@@ -76,25 +163,25 @@
     gap: 6px;
     padding: 9px 20px;
     border-radius: 6px;
-    background: transparent;
-    border: 1px solid #4A4A4A;
-    color: #6B7065;
+    background: var(--btn-secondary-bg);
+    border: 1px solid var(--btn-secondary-border);
+    color: var(--btn-secondary-text);
     font-size: 13px;
     font-weight: 500;
     transition: border-color 0.15s ease, color 0.15s ease;
   }
-  .btn-secondary:hover { border-color: #6B7065; color: #D0D0D0; }
+  .btn-secondary:hover { border-color: var(--btn-secondary-hover-border); color: var(--btn-secondary-hover-text); }
 
   .icon-btn {
     padding: 7px;
     border-radius: 6px;
     background: transparent;
-    border: 1px solid #4A4A4A;
-    color: #6B7065;
+    border: 1px solid var(--btn-secondary-border);
+    color: var(--btn-secondary-text);
     transition: border-color 0.15s ease, color 0.15s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
   }
-  .icon-btn:hover { border-color: #6B7065; color: #D0D0D0; }
+  .icon-btn:hover { border-color: var(--btn-secondary-hover-border); color: var(--btn-secondary-hover-text); }
 }

@@ -43,7 +43,7 @@ export default function Experience() {
   const { ref, inView } = useInView();
 
   return (
-    <section id="experience" className="py-24 px-6">
+    <section id="experience" className="py-24 px-6 bg-bg-primary text-text-primary">
       <div className="max-w-5xl mx-auto">
         <div className="divider mb-24" />
         <SectionHeading label="Experience" title="Where I've contributed" />
@@ -59,20 +59,20 @@ export default function Experience() {
             >
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
                 <div>
-                  <p className="text-[10px] font-mono text-[#4A4A4A] mb-0.5">{exp.org}</p>
-                  <h3 className="text-sm font-bold text-[#D0D0D0]">{exp.role}</h3>
+                  <p className="text-[10px] font-mono text-text-muted mb-0.5">{exp.org}</p>
+                  <h3 className="text-sm font-bold text-text-primary">{exp.role}</h3>
                 </div>
                 <span className="tag shrink-0 self-start">{exp.period}</span>
               </div>
               <ul className="space-y-2 mb-4">
                 {exp.points.map((pt, pi) => (
-                  <li key={pi} className="flex gap-2.5 text-xs text-[#6B7065] leading-relaxed">
-                    <span className="mt-[7px] w-1 h-1 rounded-full bg-[#4A4A4A] shrink-0" />
+                  <li key={pi} className="flex gap-2.5 text-xs text-text-secondary leading-relaxed">
+                    <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-border-color shrink-0 animate-pulse" />
                     {pt}
                   </li>
                 ))}
               </ul>
-              <div className="flex flex-wrap gap-1.5 pt-3 border-t border-[#4A4A4A]/35">
+              <div className="flex flex-wrap gap-1.5 pt-3 border-t border-border-color/35">
                 {exp.skills.map((s) => <span key={s} className="tag">{s}</span>)}
               </div>
             </motion.div>

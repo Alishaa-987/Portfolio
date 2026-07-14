@@ -33,4 +33,3 @@ Build with:
 npm run build
 ```
 Then deploy the generated `dist/` folder to your hosting provider.
-

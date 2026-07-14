@@ -45,7 +45,7 @@ export default function Skills() {
   const { ref, inView } = useInView();
 
   return (
-    <section id="skills" className="py-24 px-6">
+    <section id="skills" className="py-24 px-6 bg-bg-primary text-text-primary">
       <div className="max-w-5xl mx-auto">
         <div className="divider mb-24" />
         <SectionHeading label="Skills" title="What I work with" />
@@ -63,8 +63,8 @@ export default function Skills() {
               <div className="space-y-2.5">
                 {group.items.map((item) => (
                   <div key={item.name}>
-                    <p className="text-sm text-[#D0D0D0] font-medium">{item.name}</p>
-                    <p className="text-[10px] text-[#4A4A4A] font-mono mt-0.5">{item.evidence}</p>
+                    <p className="text-sm text-text-primary font-medium">{item.name}</p>
+                    <p className="text-[10px] text-text-muted font-mono mt-0.5">{item.evidence}</p>
                   </div>
                 ))}
               </div>

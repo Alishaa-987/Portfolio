@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 
 const links = [
   { label: 'About', href: '/#about' },
@@ -11,9 +11,16 @@ const links = [
   { label: 'Contact', href: '/#contact' },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
+  onLogoClick?: () => void;
+}
+
+export default function Navbar({ theme, toggleTheme, onLogoClick }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
   const location = useLocation();
   const isHome = location.pathname === '/';
 
@@ -28,7 +35,23 @@ export default function Navbar() {
     setOpen(false);
   }, [location]);
 
-  const NavLink = ({ label, href }: { label: string; href: string }) => {
+  // Close menu when clicking outside
+  useEffect(() => {
+    if (!open) return;
+    const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('touchstart', handleOutsideClick);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('touchstart', handleOutsideClick);
+    };
+  }, [open]);
+
+  const NavLink = ({ label, href, mobile }: { label: string; href: string; mobile?: boolean }) => {
     const isExternal = href.startsWith('/#');
     const isActive =
       href === '/projects'
@@ -37,13 +60,18 @@ export default function Navbar() {
         ? location.pathname === '/articles'
         : false;
 
-    const cls = `px-4 py-2 text-xs rounded transition-all tracking-wide ${
-      isActive
-        ? 'text-[#D0D0D0] bg-[#2A2A2A]/60'
-        : 'text-[#6B7065] hover:text-[#D0D0D0] hover:bg-[#2A2A2A]/60'
-    }`;
+    const cls = mobile
+      ? `block px-4 py-3 text-xs rounded tracking-wide transition-all ${
+          isActive
+            ? 'text-text-primary bg-bg-card font-semibold'
+            : 'text-text-secondary hover:text-text-primary hover:bg-bg-card'
+        }`
+      : `px-4 py-2 text-xs rounded transition-all tracking-wide ${
+          isActive
+            ? 'text-text-primary bg-bg-card font-semibold'
+            : 'text-text-secondary hover:text-text-primary hover:bg-bg-card'
+        }`;
 
-    // For anchor links on the home page, use native scroll
     if (isExternal && isHome) {
       return (
         <a href={href.replace('/', '')} className={cls}>
@@ -52,7 +80,6 @@ export default function Navbar() {
       );
     }
 
-    // External section links from inner pages — full navigation with hash
     if (isExternal) {
       return <a href={href} className={cls}>{label}</a>;
     }
@@ -62,15 +89,20 @@ export default function Navbar() {
 
   return (
     <motion.header
+      ref={navRef}
       initial={{ y: -48, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-[#1C1C1C]/95 backdrop-blur border-b border-[#4A4A4A]/40' : ''
+        scrolled ? 'bg-bg-secondary/90 backdrop-blur-md border-b border-border-color/60' : ''
       }`}
     >
       <nav className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-        <Link to="/" className="text-xs font-semibold text-[#6B7065] hover:text-[#D0D0D0] transition-colors tracking-widest uppercase">
+        <Link
+          to="/"
+          onClick={() => onLogoClick?.()}
+          className="text-xs font-semibold text-accent hover:text-text-primary transition-colors tracking-widest uppercase animate-pulse-subtle"
+        >
           Alisha Fatima
         </Link>
 
@@ -82,13 +114,27 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a href="/Alisha_Fatima_Resume.pdf" download className="hidden md:inline-flex btn-primary text-xs">
-          Resume
-        </a>
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Theme Toggle */}
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={toggleTheme}
+            className="icon-btn text-text-secondary hover:text-text-primary hover:border-accent"
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+          </motion.button>
 
-        <button onClick={() => setOpen(!open)} className="md:hidden icon-btn" aria-label="Menu">
-          {open ? <X size={15} /> : <Menu size={15} />}
-        </button>
+          {/* Resume */}
+          <a href="/Alisha_Fatima_Resume.pdf" download className="hidden md:inline-flex btn-primary text-xs">
+            Resume
+          </a>
+
+          {/* Hamburger Menu */}
+          <button onClick={() => setOpen(!open)} className="md:hidden icon-btn text-text-secondary hover:text-text-primary" aria-label="Menu">
+            {open ? <X size={15} /> : <Menu size={15} />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -97,12 +143,12 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#1C1C1C] border-b border-[#4A4A4A]/40"
+            className="md:hidden bg-bg-secondary border-b border-border-color/60"
           >
             <ul className="px-6 py-4 space-y-1">
               {links.map((l) => (
                 <li key={l.href}>
-                  <NavLink label={l.label} href={l.href} />
+                  <NavLink label={l.label} href={l.href} mobile />
                 </li>
               ))}
               <li className="pt-2">
@@ -115,3 +161,4 @@ export default function Navbar() {
     </motion.header>
   );
 }
+
