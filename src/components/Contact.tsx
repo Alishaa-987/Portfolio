@@ -49,7 +49,7 @@ export default function Contact() {
                 </a>
               ))}
             </div>
-            <a href="/Alisha_Fatima_Resume.pdf" download className="btn-secondary w-full justify-center"><Download size={12} /> Download Resume</a>
+            <a href="/Alisha_Fatima_Resume_2026.pdf" download className="btn-secondary w-full justify-center"><Download size={12} /> Download Resume</a>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4, delay: 0.1 }} className="lg:col-span-3">
