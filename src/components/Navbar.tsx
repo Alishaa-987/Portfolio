@@ -126,7 +126,7 @@ export default function Navbar({ theme, toggleTheme, onLogoClick }: NavbarProps)
           </motion.button>
 
           {/* Resume */}
-          <a href="/Alisha_Fatima_Resume_2026.pdf" download className="hidden md:inline-flex btn-primary text-xs">
+          <a href="/Alisha_Fatima_Resume_Latest.pdf" download className="hidden md:inline-flex btn-primary text-xs">
             Resume
           </a>
 
@@ -152,7 +152,7 @@ export default function Navbar({ theme, toggleTheme, onLogoClick }: NavbarProps)
                 </li>
               ))}
               <li className="pt-2">
-                <a href="/Alisha_Fatima_Resume_2026.pdf" download className="btn-primary w-full justify-center text-xs">Resume</a>
+                <a href="/Alisha_Fatima_Resume_Latest.pdf" download className="btn-primary w-full justify-center text-xs">Resume</a>
               </li>
             </ul>
           </motion.div>

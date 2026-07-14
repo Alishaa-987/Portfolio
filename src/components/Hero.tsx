@@ -103,7 +103,7 @@ export default function Hero() {
           className="flex flex-wrap items-center gap-3"
         >
           <a href="#projects" className="btn-primary">View Projects</a>
-          <a href="/Alisha_Fatima_Resume_2026.pdf" download className="btn-secondary"><Download size={12} /> Resume</a>
+          <a href="/Alisha_Fatima_Resume_Latest.pdf" download className="btn-secondary"><Download size={12} /> Resume</a>
 
           <div className="flex gap-1.5 ml-0 sm:ml-2">
             {[
